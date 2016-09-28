@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Cultivar(models.Model):
 	GRAPES = (
@@ -26,6 +27,9 @@ class Wine_Detail(models.Model):
 	vineyard = models.CharField(max_length=30)
 	colour = models.CharField(max_length=5, choices=COLOUR)
 	cultivar = models.ManyToManyField(Cultivar)
+	wine_year = models.PositiveIntegerField(max_length=4, default=timezone.now().year)
+	price = models.DecimalField(max_digits=10,decimal_places=2, default=0.00)
+
 	
 
 	def __str__(self):
@@ -48,9 +52,6 @@ class Flavour(models.Model):
 
 	def __str__(self):
 		return self.flavour_name
-#class Expert_Ratings(models.Model):
 
-	#wine_name = models.ForeignKey(Wine_Details, on_delete=models.CASCADE)
-	#colour_rating = models.IntegerField(max_length=10)
 
 
