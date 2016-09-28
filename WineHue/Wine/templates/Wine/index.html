@@ -1,1 +1,8 @@
-<h1>Works!</h1>
+
+{% if wine_list %}
+	<ul>
+	{% for wine in wine_list %}
+		<li>{{ wine.name }}</li>
+	{% endfor %}
+	</ul>
+{% endif %}
