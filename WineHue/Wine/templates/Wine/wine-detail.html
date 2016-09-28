@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'Wine/styles.css' %}" />
+
+<html>
+<head>
+	<div id="Logo">
+
+	</div>
+</head>
+<body>
+	{% if wine_list %}
+		<ul>
+		{% for wine in wine_list %}
+			<li>{{ wine.name }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+</body>
+</html>

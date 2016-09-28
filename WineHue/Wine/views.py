@@ -12,3 +12,10 @@ class IndexView(generic.ListView):
 
 	def get_queryset(self):
 		return Wine_Detail.objects.all()
+
+class DetailView(generic.ListView):
+	template_name ='Wine/wine-detail.html'
+	context_object_name = 'wine_list'
+
+	def get_queryset(self):
+		return Wine_Detail.objects.all()
