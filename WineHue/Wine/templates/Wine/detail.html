@@ -1,3 +1,11 @@
 <h1>{{ selection.name }}</h1>
 
-<h3>is it there?</h3>
+<ul>
+	<li> Cultivar:
+	{% for cultivar in selection.cultivar.all %}
+		<li>{{ cultivar }}</li>
+	{% endfor %}
+	</li>
+	<li>Year: {{ selection.wine_year }}</li>
+	<li>Colour: {{ selection.colour }}</li>
+</ul>
