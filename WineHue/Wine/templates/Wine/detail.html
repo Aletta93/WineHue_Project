@@ -1,11 +1,21 @@
 <h1>{{ selection.name }}</h1>
 
 <ul>
-	<li> Cultivar:
+	<li><strong> Cultivar:</strong>
 	{% for cultivar in selection.cultivar.all %}
 		<li>{{ cultivar }}</li>
 	{% endfor %}
 	</li>
 	<li>Year: {{ selection.wine_year }}</li>
 	<li>Colour: {{ selection.colour }}</li>
+	<br/>
+
+	<li><strong>Flavours:</strong></li>
+	{% for i in flavours %}
+		{% if i.wine_name.id == selection.id %}
+			<li>{{ i.flavour_name }}</li>
+		{% endif %}	
+		
+	{% endfor %}
+
 </ul>
