@@ -13,7 +13,7 @@
 	{% if wine_list %}
 		<ul>
 		{% for wine in wine_list %}
-			<li>{{ wine.name }}</li>
+			<li><a href="{% url 'Wine:select' wine.id %}">{{ wine.name }}</a></li>
 		{% endfor %}
 		</ul>
 	{% endif %}

@@ -56,7 +56,7 @@
                         <a href="#about">About</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="{% url 'Wine:wine-detail' %}">Start tasting</a>
+                        <a href="{% url 'Wine:wine-list' %}">Start tasting</a>
                     </li>
                 </ul>
             </div>
@@ -108,8 +108,8 @@
                 	
                     <h2>Start tasting</h2>
                     <hr class="star-light">
-                    <a href="{% url 'Wine:wine-detail' %}">
-                    	<img src="{% static 'Wine/images/glass_icon.png' %}" href="{% url 'Wine:wine-detail' %}" >
+                    <a href="{% url 'Wine:wine-list' %}">
+                    	<img src="{% static 'Wine/images/glass_icon.png' %}" href="{% url 'Wine:wine-list' %}" >
                     </a>
                 </div>
             </div>
@@ -178,7 +178,7 @@
     <script src="{% static 'Wine/bootstrap/js/bootstrap.js' %}"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="{% static 'Wine/js/jquery.easing.min.js' %}"></script>
 
     <!-- Theme JavaScript -->
     <script src="{% static 'Wine/js/freelancer.js' %}"></script>
