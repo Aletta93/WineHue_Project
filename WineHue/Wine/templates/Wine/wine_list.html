@@ -51,6 +51,17 @@
         <!-- /.container-fluid -->
     </nav>
 
+    <!--
+    <div id="list">
+        {% if wine_list %}
+            <ul>
+            {% for wine in wine_list %}
+                <li><a href="{% url 'Wine:select' wine.id %}">{{ wine.name }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    -->
     <style>
         .contain {
             width: 210px;
@@ -95,18 +106,7 @@
           color: black;
           text-align: center;
         }
-/*
 
-    #carousel figure:nth-child(1) { background: black; }
-    #carousel figure:nth-child(2) { background: black; }
-    #carousel figure:nth-child(3) { background: black; }
-    #carousel figure:nth-child(4) { background: black; }
-    #carousel figure:nth-child(5) { background: black; }
-    #carousel figure:nth-child(6) { background: black; }
-    #carousel figure:nth-child(7) { background: black; }
-    #carousel figure:nth-child(8) { background: black; }
-    #carousel figure:nth-child(9) { background: black; }
-*/
         .bottle {
             width: 500px;
             position: relative;
@@ -169,6 +169,14 @@
                   transform: rotateY( 320deg ) translateZ( 288px );
         }
 
+        #carousel.backface-invisible figure {
+          -webkit-backface-visibility: hidden;
+             -moz-backface-visibility: hidden;
+               -o-backface-visibility: hidden;
+                  backface-visibility: hidden;
+        }
+
+
         #options1 {
             position: absolute;
             top: 45%;
@@ -182,7 +190,8 @@
 
         button {
            border: none; 
-           background-color: rgba(154, 154, 154, 0.45);
+           border-radius: 20px;
+           background-color: rgba(154, 154, 154, 0.2);
            font-size: 100px; 
         }
     </style>
@@ -205,7 +214,7 @@
             </div>
 
             <div class="contain">
-                <div id="carousel">
+                <div id="carousel" class="backface-invisible">
                     <figure>
                         <img src="{% static 'Wine/wine_images/Signature_Rose.png' %}" class="bottle">
                     </figure>

@@ -3,7 +3,7 @@ import time
 import sys
 import colorsys
 
-ip = '10.0.0.12'
+ip = '10.0.0.4'
 connect = False
 
 try:
@@ -26,7 +26,7 @@ while not connect:
 
 lights = b.lights
 
-rgb = [127, 0, 127]
+rgb = [125, 254, 125]
 
 rgb[0] = rgb[0]/254
 rgb[1] = rgb[1]/254
@@ -39,3 +39,4 @@ r = rgb[0] / (rgb[0] + rgb[1] + rgb[2])
 g = rgb[1] / (rgb[0] + rgb[1] + rgb[2])
 
 lights[0].xy = [r, g]
+lights[1].xy = [r, g]

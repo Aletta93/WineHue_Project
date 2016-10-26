@@ -5,6 +5,7 @@ class Cultivar(models.Model):
 	GRAPES = (
 		('Sauvignon Blanc', 'Sauvignon Blanc'),
 		('Chardonnay', 'Chardonnay'),
+		('Chenin Blanc', 'Chenin Blanc'),
 		('Cabernet Sauvignon', 'Cabernet Sauvignon'),
 		('Shiraz', 'Shiraz'),
 		('Merlot', 'Merlot'),
@@ -29,6 +30,8 @@ class Wine_Detail(models.Model):
 	cultivar = models.ManyToManyField(Cultivar)
 	wine_year = models.PositiveIntegerField(max_length=4, default=timezone.now().year)
 	price = models.DecimalField(max_digits=10,decimal_places=2, default=0.00)
+	pic_name = models.CharField(max_length=30, default="not_found.png")
+	picture = models.ImageField(upload_to='bottle_images')
 
 
 	def __str__(self):
