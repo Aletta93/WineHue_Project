@@ -14,7 +14,7 @@ class IndexView(generic.ListView):
 		return Wine_Detail.objects.all()
 
 class WineListView(generic.ListView):
-	template_name ='Wine/wine-list.html'
+	template_name ='Wine/wine_list.html'
 	context_object_name = 'wine_list'
 
 	def get_queryset(self):

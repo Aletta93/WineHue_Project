@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'Wine/styles.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'Wine/styles1.css' %}" media="screen" />
 
+<!--
 <html>
 <head>
 	<div id="Logo">
@@ -17,5 +19,196 @@
 		{% endfor %}
 		</ul>
 	{% endif %}
+</body>
+</html>
+-->
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- disable zooming -->
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=0" />
+  
+  <title>Wine List</title>
+  
+
+
+    <style media="screen">
+
+    .contain {
+      width: 210px;
+      height: 600px;
+      position: relative;
+      margin: 0 auto 40px;
+      border: 1px solid #CCC;
+      -webkit-perspective: 1100px;
+         -moz-perspective: 1100px;
+           -o-perspective: 1100px;
+              perspective: 1100px;
+    }
+
+    #carousel {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      -webkit-transform: translateZ( -288px );
+         -moz-transform: translateZ( -288px );
+           -o-transform: translateZ( -288px );
+              transform: translateZ( -288px );
+      -webkit-transform-style: preserve-3d;
+         -moz-transform-style: preserve-3d;
+           -o-transform-style: preserve-3d;
+              transform-style: preserve-3d;
+      -webkit-transition: -webkit-transform 1s;
+         -moz-transition: -moz-transform 1s;
+           -o-transition: -o-transform 1s;
+              transition: transform 1s;
+    }
+
+    #carousel figure {
+      display: block;
+      position: absolute;
+      width: 186px;
+      height: 500px;
+      left: 10px;
+      top: 10px;
+      
+      line-height: 116px;
+      font-size: 35px;
+      font-weight: bold;
+      color: black;
+      text-align: center;
+    }
+
+    .bottle {
+    	position: relative;
+    	right: 90px;
+    }
+
+
+
+    #carousel figure:nth-child(1) { background: white; }
+    #carousel figure:nth-child(2) { background: white; }
+    #carousel figure:nth-child(3) { background: white; }
+    #carousel figure:nth-child(4) { background: white; }
+    #carousel figure:nth-child(5) { background: white; }
+    #carousel figure:nth-child(6) { background: white; }
+    #carousel figure:nth-child(7) { background: white; }
+    #carousel figure:nth-child(8) { background: white; }
+    #carousel figure:nth-child(9) { background: white; }
+
+	
+
+    #carousel figure:nth-child(1) {
+      -webkit-transform: rotateY(   0deg ) translateZ( 288px );
+         -moz-transform: rotateY(   0deg ) translateZ( 288px );
+           -o-transform: rotateY(   0deg ) translateZ( 288px );
+              transform: rotateY(   0deg ) translateZ( 288px );
+    }
+    #carousel figure:nth-child(2) {
+      -webkit-transform: rotateY(  40deg ) translateZ( 288px );
+         -moz-transform: rotateY(  40deg ) translateZ( 288px );
+           -o-transform: rotateY(  40deg ) translateZ( 288px );
+              transform: rotateY(  40deg ) translateZ( 288px );
+    }
+    #carousel figure:nth-child(3) {
+      -webkit-transform: rotateY(  80deg ) translateZ( 288px );
+         -moz-transform: rotateY(  80deg ) translateZ( 288px );
+           -o-transform: rotateY(  80deg ) translateZ( 288px );
+              transform: rotateY(  80deg ) translateZ( 288px );
+    }
+    #carousel figure:nth-child(4) {
+      -webkit-transform: rotateY( 120deg ) translateZ( 288px );
+         -moz-transform: rotateY( 120deg ) translateZ( 288px );
+           -o-transform: rotateY( 120deg ) translateZ( 288px );
+              transform: rotateY( 120deg ) translateZ( 288px );
+    }
+    #carousel figure:nth-child(5) {
+      -webkit-transform: rotateY( 160deg ) translateZ( 288px );
+         -moz-transform: rotateY( 160deg ) translateZ( 288px );
+           -o-transform: rotateY( 160deg ) translateZ( 288px );
+              transform: rotateY( 160deg ) translateZ( 288px );
+    }
+    #carousel figure:nth-child(6) {
+      -webkit-transform: rotateY( 200deg ) translateZ( 288px );
+         -moz-transform: rotateY( 200deg ) translateZ( 288px );
+           -o-transform: rotateY( 200deg ) translateZ( 288px );
+              transform: rotateY( 200deg ) translateZ( 288px );
+    }
+    #carousel figure:nth-child(7) {
+      -webkit-transform: rotateY( 240deg ) translateZ( 288px );
+         -moz-transform: rotateY( 240deg ) translateZ( 288px );
+           -o-transform: rotateY( 240deg ) translateZ( 288px );
+              transform: rotateY( 240deg ) translateZ( 288px );
+    }
+    #carousel figure:nth-child(8) {
+      -webkit-transform: rotateY( 280deg ) translateZ( 288px );
+         -moz-transform: rotateY( 280deg ) translateZ( 288px );
+           -o-transform: rotateY( 280deg ) translateZ( 288px );
+              transform: rotateY( 280deg ) translateZ( 288px );
+    }
+    #carousel figure:nth-child(9) {
+      -webkit-transform: rotateY( 320deg ) translateZ( 288px );
+         -moz-transform: rotateY( 320deg ) translateZ( 288px );
+           -o-transform: rotateY( 320deg ) translateZ( 288px );
+              transform: rotateY( 320deg ) translateZ( 288px );
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <h1>Carousel 1</h1>
+
+  <section class="contain">
+    <div id="carousel">
+      <figure><img src="{% static 'Wine/wine_images/Signature_Rose.png' %}" class="bottle"></figure>
+      <figure><img src="{% static 'Wine/wine_images/Signature_Chardonnay.png' %}" class="bottle"></figure>
+      <figure><img src="{% static 'Wine/wine_images/Signature_Sauvignon_blanc.png' %}" class="bottle"></figure>
+      <figure><img src="{% static 'Wine/wine_images/Sig_Cab_Sav.png' %}" class="bottle"></figure>
+      <figure><img src="{% static 'Wine/wine_images/Signature_Merlot.png' %}" class="bottle"></figure>
+      <figure><img src="{% static 'Wine/wine_images/Signature_Shiraz.png' %}" class="bottle"></figure>
+      <figure><img src="{% static 'Wine/wine_images/Signature_Chenin.png' %}" class="bottle"></figure>
+      <figure><img src="{% static 'Wine/wine_images/Signature_Pinotage.png' %}" class="bottle"></figure>
+      <figure><img src="{% static 'Wine/wine_images/Signature_red_blend.png' %}" class="bottle"></figure>
+    </div>
+  </section>
+
+  <section id="options">
+    <p id="navigation">
+      <button id="previous" data-increment="-1">Previous</button>
+      <button id="next" data-increment="1">Next</button>
+    </p>
+
+  </section>
+
+  <script src="{% static 'Wine/carousel.js' %}"></script>
+  <script>
+    var init = function() {
+      var carousel = document.getElementById('carousel'),
+          navButtons = document.querySelectorAll('#navigation button'),
+          panelCount = carousel.children.length,
+          transformProp = Modernizr.prefixed('transform'),
+          theta = 0,
+
+          onNavButtonClick = function( event ){
+            var increment = parseInt( event.target.getAttribute('data-increment') );
+            theta += ( 360 / panelCount ) * increment * -1;
+            carousel.style[ transformProp ] = 'translateZ( -288px ) rotateY(' + theta + 'deg)';
+          };
+
+      for (var i=0; i < 2; i++) {
+        navButtons[i].addEventListener( 'click', onNavButtonClick, false);
+      }
+
+    };
+
+    window.addEventListener( 'DOMContentLoaded', init, false);
+  </script>
+
+
+  <p id="disclaimer">Sorry, your browser does not support CSS 3D transforms. This example may be broken.</p>
+
+  
 </body>
 </html>
