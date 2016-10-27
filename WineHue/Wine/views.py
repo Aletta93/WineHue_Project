@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
+from .HueLights import Connect_bridge, Change_colour  
 
 from .models import Flavour, Wine_Detail
 
@@ -28,6 +29,13 @@ class WineView(generic.ListView):
 def wine_select(request, wine_id):
 	selection = get_object_or_404(Wine_Detail, pk=wine_id)
 	flavour = Flavour.objects.all()
+	lights = Connect_bridge("10.0.0.3")
+	Change_colour(
+		selection.colour_red,
+		selection.colour_green,
+		selection.colour_blue,
+		lights
+	)
 	return render(request, 'Wine/detail.html', {
 		'selection':selection,
 		'flavours':flavour,
