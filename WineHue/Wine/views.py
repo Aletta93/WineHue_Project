@@ -12,6 +12,16 @@ class IndexView(generic.ListView):
 	context_object_name = 'wine_list'
 
 	def get_queryset(self):
+		try:
+			lights = Connect_bridge("10.0.0.3")
+			Change_colour(
+				0,
+				0,
+				100,
+				lights
+			)
+		except:
+			print("Coud not connect to bridge. Check IP or press bridge button.")
 		return Wine_Detail.objects.all()
 
 class WineListView(generic.ListView):
@@ -19,7 +29,19 @@ class WineListView(generic.ListView):
 	context_object_name = 'wine_list'
 
 	def get_queryset(self):
+		try:
+			lights = Connect_bridge("10.0.0.3")
+			Change_colour(
+				254,
+				190,
+				79,
+				lights
+			)
+		except:
+			print("Coud not connect to bridge. Check IP or press bridge button.")
 		return Wine_Detail.objects.all()
+
+
 
 class WineView(generic.ListView):
 	model = Flavour
@@ -29,13 +51,20 @@ class WineView(generic.ListView):
 def wine_select(request, wine_id):
 	selection = get_object_or_404(Wine_Detail, pk=wine_id)
 	flavour = Flavour.objects.all()
-	lights = Connect_bridge("10.0.0.3")
-	Change_colour(
-		selection.colour_red,
-		selection.colour_green,
-		selection.colour_blue,
-		lights
-	)
+
+	# Tries to connect to the bridge in order to change the lights
+	# Just prints out a message when it cant connect.
+	try:
+		lights = Connect_bridge("10.0.0.3")
+		Change_colour(
+			selection.colour_red,
+			selection.colour_green,
+			selection.colour_blue,
+			lights
+		)
+	except:
+		print("Coud not connect to bridge. Check IP or press bridge button.")
+
 	return render(request, 'Wine/detail.html', {
 		'selection':selection,
 		'flavours':flavour,

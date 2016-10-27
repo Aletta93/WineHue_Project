@@ -12,6 +12,7 @@ class Cultivar(models.Model):
 		('Shiraz', 'Shiraz'),
 		('Merlot', 'Merlot'),
 		('Pinot Noir', 'Pinot Noir'),
+		('Pinotage', 'Pinotage'),
 	)
 	
 	cultivar = models.CharField(max_length=30, choices=GRAPES)
