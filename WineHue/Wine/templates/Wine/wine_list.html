@@ -2,7 +2,6 @@
 <html lang="en">
 {% load static %}
 
-
 <head>
 
     <meta charset="utf-8">
@@ -51,17 +50,6 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!--
-    <div id="list">
-        {% if wine_list %}
-            <ul>
-            {% for wine in wine_list %}
-                <li><a href="{% url 'Wine:select' wine.id %}">{{ wine.name }}</a></li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-    </div>
-    -->
     <style>
         .contain {
             width: 210px;
@@ -108,9 +96,8 @@
         }
 
         .bottle {
-            width: 500px;
-            position: relative;
-            right: 160px;
+            height: 600px;
+            
             
         }
 
@@ -215,35 +202,18 @@
 
             <div class="contain">
                 <div id="carousel" class="backface-invisible">
-                    <figure>
-                        <img src="{% static 'Wine/wine_images/Signature_Rose.png' %}" class="bottle">
-                    </figure>
-                    <figure>
-                        <img src="{% static 'Wine/wine_images/Signature_Chardonnay.png' %}" class="bottle">
-                    </figure>
-                    <figure>
-                        <img src="{% static 'Wine/wine_images/Signature_Sauvignon_blanc.png' %}" class="bottle">
-                    </figure>
-                    <figure>
-                        <img src="{% static 'Wine/wine_images/Sig_Cab_Sav.png' %}" class="bottle">
-                    </figure>
-                    <figure>
-                        <img src="{% static 'Wine/wine_images/Signature_Merlot.png' %}" class="bottle">
-                    </figure>
-                    <figure>
-                        <img src="{% static 'Wine/wine_images/Signature_Shiraz.png' %}" class="bottle">
-                    </figure>
-                    <figure>
-                        <img src="{% static 'Wine/wine_images/Signature_Chenin.png' %}" class="bottle">
-                    </figure>
-                    <figure>
-                        <img src="{% static 'Wine/wine_images/Signature_Pinotage.png' %}" class="bottle">
-                    </figure>
-                    <figure>
-                        <img src="{% static 'Wine/wine_images/Signature_red_blend.png' %}" class="bottle">
-                    </figure>
+                    {% if wine_list %}
+                        {% for wine in wine_list %}
+                            <figure>
+                            <a href="{% url 'Wine:select' wine.id %}">
+                                <img src="/static/Wine/{{ wine.picture.name }}" class="bottle">
+                            </a>
+                            </figure>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
+
 
             <div id="options2">
                 <p id="navigation">

@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django.core.validators import MaxValueValidator
+
 
 class Cultivar(models.Model):
 	GRAPES = (
@@ -28,10 +30,12 @@ class Wine_Detail(models.Model):
 	vineyard = models.CharField(max_length=30)
 	colour = models.CharField(max_length=5, choices=COLOUR)
 	cultivar = models.ManyToManyField(Cultivar)
-	wine_year = models.PositiveIntegerField(max_length=4, default=timezone.now().year)
+	wine_year = models.PositiveIntegerField(default=timezone.now().year)
 	price = models.DecimalField(max_digits=10,decimal_places=2, default=0.00)
-	pic_name = models.CharField(max_length=30, default="not_found.png")
 	picture = models.ImageField(upload_to='bottle_images')
+	colour_red = models.PositiveIntegerField(validators=[MaxValueValidator(254),], default=254)
+	colour_green = models.PositiveIntegerField(validators=[MaxValueValidator(254),], default=254)
+	colour_blue = models.PositiveIntegerField(validators=[MaxValueValidator(254),], default=254)
 
 
 	def __str__(self):
