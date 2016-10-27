@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -13,7 +14,7 @@ class IndexView(generic.ListView):
 
 	def get_queryset(self):
 		try:
-			lights = Connect_bridge("10.0.0.3")
+			lights = Connect_bridge(settings.BRIDGE_IP)
 			Change_colour(
 				0,
 				0,
@@ -30,7 +31,7 @@ class WineListView(generic.ListView):
 
 	def get_queryset(self):
 		try:
-			lights = Connect_bridge("10.0.0.3")
+			lights = Connect_bridge(settings.BRIDGE_IP)
 			Change_colour(
 				254,
 				190,
@@ -55,7 +56,7 @@ def wine_select(request, wine_id):
 	# Tries to connect to the bridge in order to change the lights
 	# Just prints out a message when it cant connect.
 	try:
-		lights = Connect_bridge("10.0.0.3")
+		lights = Connect_bridge(settings.BRIDGE_IP)
 		Change_colour(
 			selection.colour_red,
 			selection.colour_green,
