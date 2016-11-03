@@ -58,39 +58,18 @@ def wine_select(request, wine_id):
 
 	# Tries to connect to the bridge in order to change the lights
 	# Just prints out a message when it cant connect.
-	#try:
-	#	lights = Connect_bridge(settings.BRIDGE_IP)
-	#	Change_colour(
-	#		selection.colour_red,
-	#		selection.colour_green,
-	#		selection.colour_blue,
-	#		lights
-	#	)
-	#except:
-	#	print("Coud not connect to bridge. Check IP or press bridge button.")
-	if len(flavour) == 1:
-		return render(request, 'Wine/detail.html', {
-			'selection':selection,
-			'flavours':flavour,
-			'pic_1':flavour[0].flavour_picture.name,
-			'character': character,
-			})
-
-	elif len(flavour) == 2:
-		return render(request, 'Wine/detail.html', {
-			'selection':selection,
-			'flavours':flavour,
-			'pic_1':flavour[0].flavour_picture.name,
-			'pic_2':flavour[1].flavour_picture.name,
-			'character': character,
-			})
-
-	elif len(flavour) == 3:
-		return render(request, 'Wine/detail.html', {
-			'selection':selection,
-			'flavours':flavour,
-			'pic_1':flavour[0].flavour_picture.name,
-			'pic_2':flavour[1].flavour_picture.name,
-			'pic_3':flavour[2].flavour_picture.name,
-			'character': character,
-			})
+	try:
+		lights = Connect_bridge(settings.BRIDGE_IP)
+		Change_colour(
+			selection.colour_red,
+			selection.colour_green,
+			selection.colour_blue,
+			lights
+		)
+	except:
+		print("Coud not connect to bridge. Check IP or press bridge button.")
+	return render(request, 'Wine/detail.html', {
+		'selection':selection,
+		'flavours':flavour,
+		'character': character,
+		})

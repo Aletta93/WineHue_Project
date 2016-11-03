@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>WineHue List</title>
+    <title>{{ selection.name }}</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'Wine/base.css' %}" rel="stylesheet">
@@ -71,38 +71,122 @@
 
     	.wine-flavour {
     		float: left;
-    		width: 50%;
-    		margin-left: 12%;
-    		margin-top: -10%;
+    		width: 410px;
+    		height: 410px;
+    		margin-left: 13%;
+    		margin-top: -8%;
+    		overflow: hidden;
+    		position: relative;
+    		text-align: center;
+    		cursor: default;
+
     	}
+
+    	.wine-flavour .mask {
+    		width: 410px;
+    		position: absolute;
+    		margin-top: 110px;
+    		overflow: hidden;
+    		top: 0;
+    		left: 0;
+    		background-color: rgba(24,188,156, 0.3);
+    		transition: all 0.5s linear;
+    		opacity: 0;
+    	}
+
+    	.wine-flavour img{
+    		display: block;
+    		position: relative;
+    		transform: scaleY(1);
+    		transition: all 0.7s ease-in-out;
+    	}
+
+    	.wine-flavour h2{
+    		text-transform: uppercase;
+    		color: rgb(255,255,255);
+    		text-align: center;
+    		position: relative;
+    		font-size: 20px;
+    		padding: 10px;
+    		background: rgba(44,62,80,0.8);
+    		margin: 20px 0 0 0;
+    		border-bottom: 1px solid rgba(44,62,80,0.3)
+    		background: transparent;
+    		margin: 20px 40px 0px 40px;
+		    transform: scale(0);
+		    transition: all 0.5s linear;
+		    opacity: 0;
+    	}
+
+    	.wine-flavour p {
+		    font-family: Georgia, serif;
+		    font-style: italic;
+		    font-size: 12px;
+		    position: relative;
+		    color: rgb(44,62,80);
+		    padding: 10px 20px 20px;
+		    text-align: center
+		    opacity: 0;
+		    transform: scale(0);
+		    transition: all 0.5s linear;
+		}
+
+		#flavour-list {
+		    margin-top: -22px;
+		    color: rgb(44,62,80);
+		}
+
+		.wine-flavour:hover img { 
+			transform: scale(10);
+		    opacity: 0;
+		}
+		.wine-flavour:hover .mask { 
+			opacity: 1;
+		}																			 
+		.wine-flavour:hover h2,
+		.wine-flavour:hover p,
+		.wine-flavour:hover a.info{ 
+		    transform: scale(1);
+		    opacity: 1;
+		}
 
     	.wine-character {
     		float: left;
-    		margin-left: 10%;
+    		clear: right;
+    		width: 410px;
+    		margin-right: 18%;
+    		text-align: center;
+    		overflow: hidden;
+    		position: relative;
+    		text-align: center;
+    		cursor: default;
     	}
 
-    	.picture-blocks {
-    		width: 200px;
-    		height: 200px;
-    		float: left;
-    	}
-
-    	.top-flavours {
-    		float: left;
-    		clear: left;
-    	}
+    	
 
     	#pic_1 {
     		align: center;
-    		position: absolute;
-    		width: 250px;
+    		position: relative;
+    		width: 400px;
     	}
 
     	.pictures {
     		width: 150px;     		
     	}
 
-    </style>
+		.wine-price{
+			float: left;
+			width: 410px;
+			text-align: center;
+    		display: block;
+    		position: relative;
+    		margin-top: 5%;
+
+
+    	}
+    	
+
+    	</style>
 
     <section>
     	<div class="row">
@@ -120,82 +204,32 @@
         </div>
 
         <div class="wine-flavour">
-    		<div class="top-flavours">
-    			<div class="picture-blocks">
-    				{% if pic_3 %}
-						<img src="/static/Wine/{{ pic_3 }}" class="pictures" id="pic_3">
-					{% endif %}
-    			</div>
-
-    			<div class="picture-blocks">
-	    			{% if pic_1 %}
-						<img src="/static/Wine/{{ pic_1 }}" class="top-pictures" id="pic_1">
-					{% endif %}
-				</div>
-
-    			<div class="picture-blocks">
-    				{% if pic_2 %}
-						<img src="/static/Wine/{{ pic_2 }}" class="pictures" id="pic_2">
-					{% endif %}
-    			</div>
+    		<img src="/static/Wine/{{ selection.flavour_picture.name }}">
+    		<div class="mask">
+    			<h2 id="box-heading">Flavours</h2>
+    			<p>The following flavours appear in the wine:</p>
+    			<ul id="flavour-list" style="list-style:none;">
+	    			{% for i in flavours %}
+	    				<li>{{ i.flavour_name }}</li>
+	    			{% endfor %}
+    			</ul>
     		</div>
     	</div>
 
     	<div class="wine-character">
+    		<h2>Characteristics</h2>
     		{% for i in character %}		
-				<li>{{ i.characteristic_name }}</li>
+				<p style="font-size: 30px;">{{ i.characteristic_name }}</p>
+				<br />
 			{% endfor %}
     	</div>
-    </section>
 
-    <!--
-
-    <section class="success">
-    	<div class="container">
-            <ul>
-				<li><strong> Cultivar:</strong>
-				{% for cultivar in selection.cultivar.all %}
-					<li>{{ cultivar }}</li>
-				{% endfor %}
-				</li>
-				<li>Year: {{ selection.wine_year }}</li>
-				<li>Colour: {{ selection.colour }}</li>
-				<li>Picture: {{ selection.picture.path }}</li>
-				<br/>
-
-				<li><strong>Flavours:</strong></li>
-				{% for i in flavours %}
-					{% if i.wine_name.id == selection.id %}
-						<li>{{ i.flavour_name }}</li>
-					{% endif %}	
-					
-				{% endfor %}
-
-			</ul>
+    	<div class="wine-price">
+    		<h2>Price</h2>
+    		<p>R {{ selection.price }}</p>
     	</div>
     </section>
 
-    -->
-
-
-    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
-        <a class="btn btn-primary" href="#page-top">
-            <i class="fa fa-chevron-up"></i>
-        </a>
-    </div>
-
-    <!-- jQuery -->
-    <script src="{% static 'Wine/jquery/jquery.js' %}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static 'Wine/bootstrap/js/bootstrap.js' %}"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="{% static 'Wine/js/jquery.easing.min.js' %}"></script>
-
-    <!-- Theme JavaScript -->
-    <script src="{% static 'Wine/js/freelancer.js' %}"></script>
 
 </body>
 
