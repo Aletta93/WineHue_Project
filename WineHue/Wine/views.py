@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.views import generic
 from .HueLights import Connect_bridge, Change_colour  
 
-from .models import Flavour, Wine_Detail
+from .models import Characteristic, Flavour, Wine_Detail
 
 class IndexView(generic.ListView):
 	template_name ='Wine/index.html'
@@ -51,22 +51,46 @@ class WineView(generic.ListView):
 
 def wine_select(request, wine_id):
 	selection = get_object_or_404(Wine_Detail, pk=wine_id)
-	flavour = Flavour.objects.all()
+	flavour = Flavour.objects.filter(wine_name=wine_id).order_by('-flavour_strength')
+	character = Characteristic.objects.filter(wine_name=wine_id)
+
+	
 
 	# Tries to connect to the bridge in order to change the lights
 	# Just prints out a message when it cant connect.
-	try:
-		lights = Connect_bridge(settings.BRIDGE_IP)
-		Change_colour(
-			selection.colour_red,
-			selection.colour_green,
-			selection.colour_blue,
-			lights
-		)
-	except:
-		print("Coud not connect to bridge. Check IP or press bridge button.")
+	#try:
+	#	lights = Connect_bridge(settings.BRIDGE_IP)
+	#	Change_colour(
+	#		selection.colour_red,
+	#		selection.colour_green,
+	#		selection.colour_blue,
+	#		lights
+	#	)
+	#except:
+	#	print("Coud not connect to bridge. Check IP or press bridge button.")
+	if len(flavour) == 1:
+		return render(request, 'Wine/detail.html', {
+			'selection':selection,
+			'flavours':flavour,
+			'pic_1':flavour[0].flavour_picture.name,
+			'character': character,
+			})
 
-	return render(request, 'Wine/detail.html', {
-		'selection':selection,
-		'flavours':flavour,
-		})
+	elif len(flavour) == 2:
+		return render(request, 'Wine/detail.html', {
+			'selection':selection,
+			'flavours':flavour,
+			'pic_1':flavour[0].flavour_picture.name,
+			'pic_2':flavour[1].flavour_picture.name,
+			'character': character,
+			})
+
+	elif len(flavour) == 3:
+		return render(request, 'Wine/detail.html', {
+			'selection':selection,
+			'flavours':flavour,
+			'pic_1':flavour[0].flavour_picture.name,
+			'pic_2':flavour[1].flavour_picture.name,
+			'pic_3':flavour[2].flavour_picture.name,
+			'character': character,
+			})

@@ -125,4 +125,4 @@ MEDIA_ROOT = BASE_DIR + '/Wine/static/Wine/'
 MEDIA_URL = '/static/Wine/'
 
 # Set the IP of the lights here
-BRIDGE_IP = "10.0.0.3"
+BRIDGE_IP = "10.0.0.4"

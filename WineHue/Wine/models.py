@@ -56,9 +56,15 @@ class Flavour(models.Model):
 	wine_name = models.ForeignKey(Wine_Detail, on_delete=models.CASCADE)
 	flavour_name = models.CharField(max_length=30)
 	flavour_strength = models.IntegerField(choices=STRENGTH)
+	flavour_picture = models.ImageField(upload_to='flavour_images')
 
 	def __str__(self):
 		return self.flavour_name
 
+class Characteristic(models.Model):
+	wine_name = models.ForeignKey(Wine_Detail, on_delete=models.CASCADE)
+	characteristic_name = models.CharField(max_length=30)
 
+	def __str__(self):
+		return self.characteristic_name
 

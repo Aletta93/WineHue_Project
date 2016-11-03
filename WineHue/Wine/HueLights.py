@@ -53,8 +53,8 @@ def Change_colour(red,green,blue,lights):
 	Y = red * 0.283881 + green * 0.668433 + blue * 0.047685
 	Z = red * 0.000088 + green * 0.072310 + blue * 0.986039
 
-	lights[0].transitiontime = 50
-	lights[1].transitiontime = 50
+	lights[0].transitiontime = 20
+	lights[1].transitiontime = 20
 
 	lights[0].on = True
 	lights[0].brightness = floor(Y * 254)
