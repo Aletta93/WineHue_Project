@@ -154,10 +154,11 @@
     		float: left;
     		clear: right;
     		width: 410px;
-    		margin-right: 18%;
+    		margin-right: 5%;
     		text-align: center;
     		overflow: hidden;
     		position: relative;
+    		left: 100px;
     		text-align: center;
     		cursor: default;
     	}
@@ -180,11 +181,23 @@
 			text-align: center;
     		display: block;
     		position: relative;
-    		margin-top: 5%;
-
-
+    		left: 100px;
+    		margin-top: 8%;
     	}
     	
+    	.wine-rating {
+    		float: left;
+    		width: 410px;
+    		text-align: center;
+    		position: absolute;
+    		left: 500px;
+    		margin-top: 14%;
+
+    	}
+
+    	.wine-rating img {
+    		width: 100px;
+    	}
 
     	</style>
 
@@ -218,15 +231,21 @@
 
     	<div class="wine-character">
     		<h2>Characteristics</h2>
+    		<ul style="list-style: none; font-size: 30px;">
     		{% for i in character %}		
-				<p style="font-size: 30px;">{{ i.characteristic_name }}</p>
-				<br />
+				<li>{{ i.characteristic_name }}</li>
 			{% endfor %}
+			</ul>
     	</div>
 
     	<div class="wine-price">
     		<h2>Price</h2>
     		<p>R {{ selection.price }}</p>
+    	</div>
+
+    	<div class="wine-rating">
+    		<h2>Rating</h2>
+    		<img src= "/static/Wine/{{ selection.rating_picture }}">
     	</div>
     </section>
 

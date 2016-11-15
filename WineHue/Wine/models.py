@@ -35,6 +35,7 @@ class Wine_Detail(models.Model):
 	price = models.DecimalField(max_digits=10,decimal_places=2, default=0.00)
 	picture = models.ImageField(upload_to='bottle_images')
 	flavour_picture = models.ImageField(upload_to='flavour_images')
+	rating_picture = models.ImageField(upload_to='rating_images')
 	colour_red = models.PositiveIntegerField(validators=[MaxValueValidator(254),], default=254)
 	colour_green = models.PositiveIntegerField(validators=[MaxValueValidator(254),], default=254)
 	colour_blue = models.PositiveIntegerField(validators=[MaxValueValidator(254),], default=254)
