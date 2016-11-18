@@ -49,7 +49,7 @@ class WineListView(generic.ListView):
 
 	def get_queryset(self):
 		try:
-			#lights = Connect_bridge(settings.BRIDGE_IP)
+			lights = Connect_bridge(settings.BRIDGE_IP)
 			r = random.random()
 			print(r)
 			red = 0
@@ -89,7 +89,7 @@ def wine_select(request, wine_id):
 	# Tries to connect to the bridge in order to change the lights
 	# Just prints out a message when it cant connect.
 	try:
-		#lights = Connect_bridge(settings.BRIDGE_IP)
+		lights = Connect_bridge(settings.BRIDGE_IP)
 		Change_colour(
 			selection.colour_red,
 			selection.colour_green,
