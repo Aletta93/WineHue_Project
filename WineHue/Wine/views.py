@@ -20,15 +20,15 @@ class IndexView(generic.ListView):
 			red = 0
 			green = 0
 			blue = 0
-			if r < .33
+			if r < .33:
 				red = 0
 				green = 0
 				blue = 100
-			elif r < .66
+			elif r < .66:
 				red = 128
 				green = 0
 				blue = 128
-			else
+			else:
 				red = 0
 				green = 139
 				blue = 139
@@ -54,11 +54,11 @@ class WineListView(generic.ListView):
 			red = 0
 			green = 0
 			blue = 0
-			if r < .5
+			if r < .5:
 				red = 0
 				green = 139
 				blue = 139
-			else
+			else:
 				red = 0
 				green = 128
 				blue = 0
