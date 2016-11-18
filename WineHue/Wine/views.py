@@ -16,7 +16,7 @@ class IndexView(generic.ListView):
 	def get_queryset(self):
 		try:
 			lights = Connect_bridge(settings.BRIDGE_IP)
-			r = random.Random()
+			r = random.random()
 			red = 0
 			green = 0
 			blue = 0
@@ -50,7 +50,8 @@ class WineListView(generic.ListView):
 	def get_queryset(self):
 		try:
 			lights = Connect_bridge(settings.BRIDGE_IP)
-			r = random.Random()
+			r = random.random()
+			print(r)
 			red = 0
 			green = 0
 			blue = 0
